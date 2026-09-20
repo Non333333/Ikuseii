@@ -1,0 +1,12 @@
+{
+  "title": "22年育成記録",
+  "maxAge": 22,
+  "pregnancyStartWeek": 8,
+  "guaranteedBirthWeek": 42,
+  "saveSlots": 3,
+  "notes": [
+    "父・母・子は固定キャラクター想定。プレイヤーは父か母を選ぶ。",
+    "どの分岐でもプレイヤー側が主養育者として残る。",
+    "イベント追加は data/events/index.json にファイルパスを追記する。"
+  ]
+}
