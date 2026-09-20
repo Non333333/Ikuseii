@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#f4eadf">
+  <title>22年育成記録</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <div>
+        <div class="eyebrow">LIFE SIMULATION</div>
+        <h1>22年育成記録</h1>
+      </div>
+      <div class="top-actions">
+        <button id="openRecordBtn" class="ghost">記録一覧</button>
+        <button id="openSaveBtn" class="ghost">セーブ</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="scene-card">
+        <div id="room" class="room room-normal">
+          <div class="window">
+            <div class="sky"></div>
+            <div class="window-frame vertical"></div>
+            <div class="window-frame horizontal"></div>
+          </div>
+          <div class="curtain curtain-left"></div>
+          <div class="curtain curtain-right"></div>
+          <div class="wall-mark mark-a"></div>
+          <div class="wall-mark mark-b"></div>
+          <div class="shelf">
+            <div class="book b1"></div><div class="book b2"></div><div class="book b3"></div>
+          </div>
+          <div class="table"><div class="table-leg l"></div><div class="table-leg r"></div></div>
+          <div id="crib" class="crib hidden"><div class="crib-rail"></div></div>
+          <div id="desk" class="desk hidden"></div>
+          <div id="trash" class="trash hidden">◌</div>
+
+          <div id="chibi" class="chibi hidden" aria-label="育成中の子ども">
+            <div class="hair hair-back"></div>
+            <div class="head">
+              <div class="hair hair-front"></div>
+              <div class="eye eye-left"></div>
+              <div class="eye eye-right"></div>
+              <div class="mouth"></div>
+            </div>
+            <div class="body">
+              <div class="shirt-detail"></div>
+            </div>
+            <div class="leg leg-left"></div>
+            <div class="leg leg-right"></div>
+          </div>
+
+          <div id="sceneCaption" class="scene-caption">妊娠中。まだこの部屋に子どもの姿はない。</div>
+        </div>
+
+        <div class="status-strip">
+          <div><span>時期</span><strong id="ageLabel">開始前</strong></div>
+          <div><span>家の状態</span><strong id="homeLabel">普通</strong></div>
+          <div><span>健康</span><strong id="healthLabel">未確定</strong></div>
+          <div><span>養育者</span><strong id="guardianLabel">未選択</strong></div>
+        </div>
+      </section>
+
+      <section class="control-card">
+        <div id="setupPanel">
+          <div class="panel-kicker">NEW GAME</div>
+          <h2>育てる人生を始める</h2>
+          <p class="lead">父か母を選び、これから生まれる子の名前を決めます。どのルートでも、選んだ親が最終的な主養育者になります。</p>
+
+          <label class="field-label">プレイヤー</label>
+          <div class="choice-grid role-grid">
+            <button class="role-choice selected" data-role="mother">
+              <strong>母としてプレイ</strong>
+              <span>妊娠中の身体・生活選択を直接行う</span>
+            </button>
+            <button class="role-choice" data-role="father">
+              <strong>父としてプレイ</strong>
+              <span>妊娠中は家庭環境・妻への関わりを中心に選ぶ</span>
+            </button>
+          </div>
+
+          <label class="field-label" for="childNameInput">子どもの名前</label>
+          <input id="childNameInput" class="text-input" maxlength="16" value="ひなた" placeholder="名前を入力">
+
+          <button id="startBtn" class="primary wide">妊娠期から始める</button>
+          <button id="loadFromSetupBtn" class="secondary wide">セーブデータを読み込む</button>
+        </div>
+
+        <div id="gamePanel" class="hidden">
+          <div class="panel-kicker" id="phaseKicker">PREGNANCY</div>
+          <h2 id="eventTitle">今日をどう過ごす？</h2>
+          <p id="eventText" class="event-text"></p>
+          <div id="choices" class="choices"></div>
+
+          <div class="small-status">
+            <div><span>家計</span><b id="moneyStat">50</b></div>
+            <div><span>清潔</span><b id="cleanStat">50</b></div>
+            <div><span>家庭安定</span><b id="familyStat">50</b></div>
+            <div><span>自立</span><b id="independenceStat">0</b></div>
+          </div>
+        </div>
+
+        <div id="endingPanel" class="hidden">
+          <div class="panel-kicker">AGE 22</div>
+          <h2 id="endingTitle">22歳になりました</h2>
+          <div id="endingSummary" class="ending-summary"></div>
+          <button id="openDiaryBtn" class="primary wide">0歳からの記録を読む</button>
+          <button id="endingRecordBtn" class="secondary wide">成長一覧を見る</button>
+          <button id="newGameBtn" class="ghost wide">最初から育て直す</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="modalBackdrop" class="modal-backdrop hidden">
+    <section id="modal" class="modal">
+      <div class="modal-header">
+        <div>
+          <div id="modalKicker" class="panel-kicker">RECORD</div>
+          <h2 id="modalTitle">記録</h2>
+        </div>
+        <button id="closeModalBtn" class="icon-btn">×</button>
+      </div>
+      <div id="modalBody" class="modal-body"></div>
+    </section>
+  </div>
+
+  <script src="./game.js"></script>
+</body>
+</html>
